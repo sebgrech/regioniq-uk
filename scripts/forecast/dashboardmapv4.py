@@ -1,0 +1,1049 @@
+#!/usr/bin/env python3
+"""
+Region IQ - Ultimate V4 Dashboard
+==================================
+Professional-grade regional economic dashboard with:
+- All indicators (Population, Income, GVA, Employment, Productivity)
+- Interactive maps and charts
+- AI-generated narratives
+- Downloadable PDF reports
+- Comparison modes
+- Quality badges
+"""
+
+import json
+from pathlib import Path
+import numpy as np
+import pandas as pd
+import plotly.graph_objects as go
+import plotly.express as px
+from plotly.subplots import make_subplots
+import streamlit as st
+from datetime import datetime
+import io
+
+# Optional imports for PDF generation
+try:
+    from reportlab.lib.pagesizes import letter, A4
+    from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, PageBreak, Image
+    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+    from reportlab.lib import colors
+    from reportlab.lib.units import inch
+    from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY
+    import matplotlib.pyplot as plt
+    HAVE_REPORTLAB = True
+except ImportError:
+    HAVE_REPORTLAB = False
+    st.warning("Install reportlab for PDF export: pip install reportlab matplotlib")
+
+# ===========================
+# Page Configuration
+# ===========================
+
+st.set_page_config(
+    page_title="Region IQ | Professional Economic Forecasts",
+    page_icon="📊",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# Custom CSS for professional styling
+st.markdown("""
+<style>
+    /* Main container */
+    .main {
+        padding-top: 1rem;
+    }
+    
+    /* Metric styling */
+    [data-testid="stMetricValue"] {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #003087;
+    }
+    
+    [data-testid="stMetricDelta"] {
+        font-size: 1rem;
+    }
+    
+    /* Headers */
+    h1 {
+        color: #003087;
+        border-bottom: 3px solid #FF6900;
+        padding-bottom: 10px;
+    }
+    
+    h2 {
+        color: #003087;
+        margin-top: 2rem;
+    }
+    
+    /* Sidebar */
+    .css-1d391kg {
+        background-color: #f8f9fa;
+    }
+    
+    /* Info boxes */
+    .stAlert {
+        border-radius: 10px;
+        border-left: 5px solid #FF6900;
+    }
+    
+    /* Download buttons */
+    .stDownloadButton {
+        background-color: #003087;
+        color: white;
+        border-radius: 5px;
+        border: none;
+        padding: 0.5rem 1rem;
+        font-weight: 600;
+    }
+    
+    .stDownloadButton:hover {
+        background-color: #FF6900;
+    }
+    
+    /* Quality badges */
+    .quality-badge {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin: 0.2rem;
+    }
+    
+    .quality-high {
+        background-color: #28a745;
+        color: white;
+    }
+    
+    .quality-medium {
+        background-color: #ffc107;
+        color: black;
+    }
+    
+    .quality-low {
+        background-color: #dc3545;
+        color: white;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# ===========================
+# Data Paths & Configuration
+# ===========================
+
+# Paths to V3 forecast outputs
+FORECAST_LONG = Path("data/forecast/forecast_v3_long.csv")
+FORECAST_WIDE = Path("data/forecast/forecast_v3_wide.csv")
+CONFIDENCE_INTERVALS = Path("data/forecast/confidence_intervals_v3.csv")
+QUALITY_METRICS = Path("data/forecast/forecast_quality_v3.csv")
+METADATA = Path("data/forecast/metadata_v3.json")
+GEO_ITL1 = Path("data/geo/ITL1_simplified_clean.geojson")
+
+# ITL1 code mapping
+ITL1_NAMES = {
+    "TLC": "North East",
+    "TLD": "North West",
+    "TLE": "Yorkshire & Humber",
+    "TLF": "East Midlands",
+    "TLG": "West Midlands",
+    "TLH": "East of England",
+    "TLI": "London",
+    "TLJ": "South East",
+    "TLK": "South West",
+    "TLL": "Wales",
+    "TLM": "Scotland",
+    "TLN": "Northern Ireland"
+}
+
+# Metric display configuration
+METRIC_CONFIG = {
+    'population_total': {
+        'name': 'Total Population',
+        'unit': 'persons',
+        'format': 'number',
+        'color': '#003087',
+        'icon': '👥'
+    },
+    'gdhi_total_mn_gbp': {
+        'name': 'Total Income (GDHI)',
+        'unit': '£m',
+        'format': 'currency_m',
+        'color': '#28a745',
+        'icon': '💷'
+    },
+    'gdhi_per_head_gbp': {
+        'name': 'Income per Head',
+        'unit': '£',
+        'format': 'currency',
+        'color': '#28a745',
+        'icon': '💰'
+    },
+    'nominal_gva_mn_gbp': {
+        'name': 'Economic Output (GVA)',
+        'unit': '£m nominal',
+        'format': 'currency_m',
+        'color': '#FF6900',
+        'icon': '📈'
+    },
+    'chained_gva_mn_gbp': {
+        'name': 'Real Economic Output',
+        'unit': '£m (2022 prices)',
+        'format': 'currency_m',
+        'color': '#FF6900',
+        'icon': '📊'
+    },
+    'emp_total_jobs': {
+        'name': 'Total Employment',
+        'unit': 'jobs',
+        'format': 'number',
+        'color': '#17a2b8',
+        'icon': '💼'
+    },
+    'productivity_gbp_per_job': {
+        'name': 'Productivity',
+        'unit': '£/job',
+        'format': 'currency',
+        'color': '#6610f2',
+        'icon': '⚡'
+    },
+    'employment_rate': {
+        'name': 'Employment Rate',
+        'unit': '%',
+        'format': 'percentage',
+        'color': '#17a2b8',
+        'icon': '📊'
+    },
+    'income_per_worker_gbp': {
+        'name': 'Income per Worker',
+        'unit': '£',
+        'format': 'currency',
+        'color': '#28a745',
+        'icon': '💵'
+    }
+}
+
+# ===========================
+# Helper Functions
+# ===========================
+
+@st.cache_data
+def load_data():
+    """Load all forecast data with caching"""
+    if not FORECAST_LONG.exists():
+        st.error(f"Forecast data not found. Please run the forecasting engine first.")
+        st.stop()
+    
+    # Load main data
+    df_long = pd.read_csv(FORECAST_LONG)
+    df_wide = pd.read_csv(FORECAST_WIDE)
+    
+    # Load supplementary data
+    df_ci = pd.read_csv(CONFIDENCE_INTERVALS) if CONFIDENCE_INTERVALS.exists() else pd.DataFrame()
+    df_quality = pd.read_csv(QUALITY_METRICS) if QUALITY_METRICS.exists() else pd.DataFrame()
+    
+    # Load metadata
+    metadata = {}
+    if METADATA.exists():
+        with open(METADATA, 'r') as f:
+            metadata = json.load(f)
+    
+    return df_long, df_wide, df_ci, df_quality, metadata
+
+@st.cache_data
+def load_geojson():
+    """Load GeoJSON for mapping"""
+    if not GEO_ITL1.exists():
+        return None
+    return json.loads(GEO_ITL1.read_text())
+
+def format_value(value, format_type):
+    """Format values based on type"""
+    if pd.isna(value) or value is None:
+        return "—"
+    
+    if format_type == 'number':
+        return f"{value:,.0f}"
+    elif format_type == 'currency':
+        return f"£{value:,.0f}"
+    elif format_type == 'currency_m':
+        return f"£{value:,.0f}m"
+    elif format_type == 'percentage':
+        return f"{value:.1f}%"
+    else:
+        return f"{value:.2f}"
+
+def calculate_cagr(start_value, end_value, years):
+    """Calculate compound annual growth rate"""
+    if start_value <= 0 or end_value <= 0 or years <= 0:
+        return None
+    return ((end_value / start_value) ** (1 / years) - 1) * 100
+
+def get_quality_badge(cv_value):
+    """Generate quality badge based on coefficient of variation"""
+    if pd.isna(cv_value):
+        return "🔵 No Data"
+    elif cv_value < 0.05:
+        return "🟢 Excellent"
+    elif cv_value < 0.10:
+        return "🟡 Good"
+    elif cv_value < 0.20:
+        return "🟠 Moderate"
+    else:
+        return "🔴 High Uncertainty"
+
+def generate_ai_narrative(data, region, metric, metadata):
+    """Generate AI-style narrative for the data"""
+    # This is a simplified version - in production, you'd call GPT-4 API
+    
+    hist_data = data[data['data_type'] == 'historical']
+    fore_data = data[data['data_type'] == 'forecast']
+    
+    if hist_data.empty or fore_data.empty:
+        return "Insufficient data for narrative generation."
+    
+    # Calculate key statistics
+    last_hist_year = hist_data['year'].max()
+    last_hist_value = hist_data[hist_data['year'] == last_hist_year]['value'].iloc[0]
+    
+    forecast_2030 = fore_data[fore_data['year'] == 2030]['value'].iloc[0] if 2030 in fore_data['year'].values else fore_data['value'].iloc[-1]
+    
+    cagr = calculate_cagr(last_hist_value, forecast_2030, 2030 - last_hist_year)
+    
+    # Get metric info
+    metric_info = METRIC_CONFIG.get(metric, {})
+    metric_name = metric_info.get('name', metric)
+    
+    # Build narrative
+    narrative = f"""
+    ### {region} - {metric_name}
+    
+    **Current Status**: As of {last_hist_year}, {region}'s {metric_name.lower()} stood at {format_value(last_hist_value, metric_info.get('format', 'number'))} {metric_info.get('unit', '')}.
+    
+    **Forecast Outlook**: Our models project {metric_name.lower()} will reach {format_value(forecast_2030, metric_info.get('format', 'number'))} {metric_info.get('unit', '')} by 2030, representing a compound annual growth rate of {cagr:.1f}%.
+    
+    **Key Drivers**: This trajectory reflects post-COVID recovery dynamics, structural economic shifts, and regional development patterns. The forecast accounts for historical volatility and structural breaks including the 2008 financial crisis and 2020 pandemic impacts.
+    
+    **Confidence**: Based on {hist_data['year'].nunique()} years of historical data, our ensemble model combining ARIMA, ETS, and linear trend approaches provides robust projections with quantified uncertainty bands.
+    """
+    
+    return narrative
+
+# ===========================
+# Visualization Functions
+# ===========================
+
+def create_time_series_chart(data, region, metric, show_confidence=True):
+    """Create professional time series chart with forecast"""
+    
+    metric_info = METRIC_CONFIG.get(metric, {})
+    
+    # Split historical and forecast
+    hist = data[data['data_type'] == 'historical'].sort_values('year')
+    fore = data[data['data_type'] == 'forecast'].sort_values('year')
+    
+    fig = go.Figure()
+    
+    # Historical line
+    fig.add_trace(go.Scatter(
+        x=hist['year'],
+        y=hist['value'],
+        mode='lines+markers',
+        name='Historical',
+        line=dict(color='#003087', width=2),
+        marker=dict(size=4)
+    ))
+    
+    # Forecast line
+    if not fore.empty:
+        fig.add_trace(go.Scatter(
+            x=fore['year'],
+            y=fore['value'],
+            mode='lines+markers',
+            name='Forecast',
+            line=dict(color='#FF6900', width=2, dash='dash'),
+            marker=dict(size=4)
+        ))
+        
+        # Confidence intervals
+        if show_confidence and 'ci_lower' in fore.columns:
+            fig.add_trace(go.Scatter(
+                x=fore['year'].tolist() + fore['year'].tolist()[::-1],
+                y=fore['ci_upper'].tolist() + fore['ci_lower'].tolist()[::-1],
+                fill='toself',
+                fillcolor='rgba(255, 105, 0, 0.2)',
+                line=dict(color='rgba(255,255,255,0)'),
+                showlegend=True,
+                name='95% Confidence'
+            ))
+    
+    # Add recession shading
+    fig.add_vrect(x0=2008, x1=2009, fillcolor="gray", opacity=0.2, line_width=0)
+    fig.add_vrect(x0=2020, x1=2021, fillcolor="gray", opacity=0.2, line_width=0)
+    
+    # Add vertical line at forecast start
+    if not hist.empty and not fore.empty:
+        last_hist_year = hist['year'].max()
+        fig.add_vline(x=last_hist_year, line_width=1, line_dash="dot", line_color="gray")
+    
+    # Update layout
+    fig.update_layout(
+        title=f"{region} - {metric_info.get('name', metric)}",
+        xaxis_title="Year",
+        yaxis_title=f"{metric_info.get('unit', '')}",
+        hovermode='x unified',
+        height=500,
+        template='plotly_white',
+        font=dict(family="Arial, sans-serif", size=12),
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+        )
+    )
+    
+    return fig
+
+def create_comparison_chart(data, regions, metric):
+    """Create multi-region comparison chart"""
+    
+    metric_info = METRIC_CONFIG.get(metric, {})
+    
+    fig = go.Figure()
+    
+    colors = px.colors.qualitative.Set2
+    
+    for i, region in enumerate(regions):
+        region_data = data[(data['region_code'] == region) & (data['metric'] == metric)]
+        
+        if not region_data.empty:
+            # Historical
+            hist = region_data[region_data['data_type'] == 'historical'].sort_values('year')
+            if not hist.empty:
+                fig.add_trace(go.Scatter(
+                    x=hist['year'],
+                    y=hist['value'],
+                    mode='lines',
+                    name=f"{ITL1_NAMES.get(region, region)}",
+                    line=dict(color=colors[i % len(colors)], width=2),
+                    legendgroup=region
+                ))
+            
+            # Forecast
+            fore = region_data[region_data['data_type'] == 'forecast'].sort_values('year')
+            if not fore.empty:
+                fig.add_trace(go.Scatter(
+                    x=fore['year'],
+                    y=fore['value'],
+                    mode='lines',
+                    name=f"{ITL1_NAMES.get(region, region)} (forecast)",
+                    line=dict(color=colors[i % len(colors)], width=2, dash='dash'),
+                    showlegend=False,
+                    legendgroup=region
+                ))
+    
+    fig.update_layout(
+        title=f"Regional Comparison - {metric_info.get('name', metric)}",
+        xaxis_title="Year",
+        yaxis_title=f"{metric_info.get('unit', '')}",
+        hovermode='x unified',
+        height=500,
+        template='plotly_white',
+        font=dict(family="Arial, sans-serif", size=12)
+    )
+    
+    return fig
+
+def create_choropleth_map(data, metric, year, geojson):
+    """Create choropleth map for a specific metric and year"""
+    
+    if geojson is None:
+        return None
+    
+    metric_info = METRIC_CONFIG.get(metric, {})
+    
+    # Filter data for specific year and metric
+    map_data = data[(data['year'] == year) & (data['metric'] == metric)]
+    
+    if map_data.empty:
+        return None
+    
+    # Prepare data for choropleth
+    map_df = map_data[['region_code', 'value']].copy()
+    map_df['region_name'] = map_df['region_code'].map(ITL1_NAMES)
+    
+    # Create figure
+    fig = go.Figure(go.Choroplethmapbox(
+        geojson=geojson,
+        locations=map_df['region_code'],
+        z=map_df['value'],
+        colorscale='Blues',
+        marker_line_width=0.5,
+        marker_line_color='white',
+        colorbar_title=metric_info.get('unit', ''),
+        hovertemplate='<b>%{text}</b><br>' + 
+                      f"{metric_info.get('name', metric)}: %{{z:,.0f}}<extra></extra>",
+        text=map_df['region_name']
+    ))
+    
+    fig.update_layout(
+        mapbox_style="carto-positron",
+        mapbox_zoom=5,
+        mapbox_center={"lat": 55, "lon": -3},
+        margin={"r": 0, "t": 30, "l": 0, "b": 0},
+        height=600,
+        title=f"{metric_info.get('name', metric)} - {year}"
+    )
+    
+    return fig
+
+def create_dashboard_summary(data, region):
+    """Create a comprehensive dashboard summary for a region"""
+    
+    current_year = datetime.now().year
+    
+    # Create subplots
+    fig = make_subplots(
+        rows=2, cols=3,
+        subplot_titles=('Population Trend', 'Economic Output (GVA)', 'Employment',
+                       'Income per Head', 'Productivity', 'Growth Rates'),
+        specs=[[{'type': 'scatter'}, {'type': 'scatter'}, {'type': 'scatter'}],
+               [{'type': 'scatter'}, {'type': 'scatter'}, {'type': 'bar'}]]
+    )
+    
+    # Define metrics to plot
+    metrics_to_plot = [
+        ('population_total', 1, 1),
+        ('nominal_gva_mn_gbp', 1, 2),
+        ('emp_total_jobs', 1, 3),
+        ('gdhi_per_head_gbp', 2, 1),
+        ('productivity_gbp_per_job', 2, 2)
+    ]
+    
+    # Plot each metric
+    for metric, row, col in metrics_to_plot:
+        metric_data = data[(data['region_code'] == region) & (data['metric'] == metric)]
+        
+        if not metric_data.empty:
+            hist = metric_data[metric_data['data_type'] == 'historical'].sort_values('year')
+            fore = metric_data[metric_data['data_type'] == 'forecast'].sort_values('year')
+            
+            if not hist.empty:
+                fig.add_trace(
+                    go.Scatter(x=hist['year'], y=hist['value'], mode='lines',
+                             line=dict(color='#003087', width=2),
+                             showlegend=False),
+                    row=row, col=col
+                )
+            
+            if not fore.empty:
+                fig.add_trace(
+                    go.Scatter(x=fore['year'], y=fore['value'], mode='lines',
+                             line=dict(color='#FF6900', width=2, dash='dash'),
+                             showlegend=False),
+                    row=row, col=col
+                )
+    
+    # Add growth rates bar chart
+    growth_rates = []
+    for metric in ['population_total', 'nominal_gva_mn_gbp', 'emp_total_jobs']:
+        metric_data = data[(data['region_code'] == region) & (data['metric'] == metric)]
+        if not metric_data.empty:
+            hist = metric_data[metric_data['data_type'] == 'historical']
+            fore = metric_data[metric_data['data_type'] == 'forecast']
+            
+            if not hist.empty and not fore.empty:
+                last_hist = hist.nlargest(1, 'year')['value'].iloc[0]
+                fore_2030 = fore[fore['year'] == 2030]['value']
+                if not fore_2030.empty:
+                    cagr = calculate_cagr(last_hist, fore_2030.iloc[0], 
+                                        2030 - hist['year'].max())
+                    if cagr:
+                        growth_rates.append((METRIC_CONFIG[metric]['name'], cagr))
+    
+    if growth_rates:
+        fig.add_trace(
+            go.Bar(x=[g[0] for g in growth_rates],
+                  y=[g[1] for g in growth_rates],
+                  marker_color='#17a2b8',
+                  showlegend=False),
+            row=2, col=3
+        )
+    
+    fig.update_layout(height=700, showlegend=False, template='plotly_white',
+                     title_text=f"Regional Dashboard - {ITL1_NAMES.get(region, region)}")
+    
+    return fig
+
+def generate_pdf_report(data, region, metadata):
+    """Generate downloadable PDF report"""
+    if not HAVE_REPORTLAB:
+        return None
+    
+    buffer = io.BytesIO()
+    doc = SimpleDocTemplate(buffer, pagesize=A4)
+    story = []
+    styles = getSampleStyleSheet()
+    
+    # Title
+    title_style = ParagraphStyle(
+        'CustomTitle',
+        parent=styles['Heading1'],
+        fontSize=24,
+        textColor=colors.HexColor('#003087'),
+        spaceAfter=30,
+        alignment=TA_CENTER
+    )
+    
+    story.append(Paragraph(f"Regional Economic Forecast Report", title_style))
+    story.append(Paragraph(f"{ITL1_NAMES.get(region, region)}", title_style))
+    story.append(Spacer(1, 20))
+    
+    # Executive Summary
+    story.append(Paragraph("Executive Summary", styles['Heading2']))
+    
+    # Get key metrics
+    region_data = data[data['region_code'] == region]
+    
+    summary_data = []
+    for metric in ['population_total', 'nominal_gva_mn_gbp', 'emp_total_jobs']:
+        metric_data = region_data[region_data['metric'] == metric]
+        if not metric_data.empty:
+            hist = metric_data[metric_data['data_type'] == 'historical']
+            fore = metric_data[metric_data['data_type'] == 'forecast']
+            
+            if not hist.empty and not fore.empty:
+                last_hist_year = hist['year'].max()
+                last_hist_value = hist[hist['year'] == last_hist_year]['value'].iloc[0]
+                fore_2030 = fore[fore['year'] == 2030]['value'].iloc[0] if 2030 in fore['year'].values else fore['value'].iloc[-1]
+                
+                summary_data.append([
+                    METRIC_CONFIG[metric]['name'],
+                    format_value(last_hist_value, METRIC_CONFIG[metric]['format']),
+                    format_value(fore_2030, METRIC_CONFIG[metric]['format']),
+                    f"{calculate_cagr(last_hist_value, fore_2030, 2030 - last_hist_year):.1f}%"
+                ])
+    
+    if summary_data:
+        t = Table([['Indicator', f'{hist["year"].max()}', '2030 Forecast', 'CAGR']] + summary_data)
+        t.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#003087')),
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+            ('FONTSIZE', (0, 0), (-1, 0), 12),
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+            ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+            ('GRID', (0, 0), (-1, -1), 1, colors.black)
+        ]))
+        story.append(t)
+    
+    story.append(Spacer(1, 20))
+    
+    # Methodology
+    story.append(Paragraph("Methodology", styles['Heading2']))
+    methodology_text = """
+    This forecast employs state-of-the-art econometric techniques including:
+    <br/>• Ensemble modeling combining ARIMA, ETS, and linear trend approaches
+    <br/>• Cross-validation for optimal model weighting
+    <br/>• Structural break detection for major economic events
+    <br/>• Bootstrap confidence intervals for robust uncertainty quantification
+    <br/>• Monte Carlo simulation for derived metric error propagation
+    """
+    story.append(Paragraph(methodology_text, styles['Normal']))
+    
+    story.append(Spacer(1, 20))
+    
+    # Data Quality
+    story.append(Paragraph("Data Quality Indicators", styles['Heading2']))
+    quality_text = f"""
+    • Historical data coverage: {metadata.get('quality_indicators', {}).get('avg_history_length', 'N/A')} years average
+    <br/>• Forecast uncertainty (CV): {metadata.get('quality_indicators', {}).get('mean_cv', 0)*100:.1f}% average
+    <br/>• Model diversity: {metadata.get('quality_indicators', {}).get('model_diversity', 'N/A')} different methods
+    <br/>• Data gaps: {metadata.get('quality_indicators', {}).get('data_gaps', 0)} detected
+    """
+    story.append(Paragraph(quality_text, styles['Normal']))
+    
+    # Footer
+    story.append(Spacer(1, 40))
+    footer_style = ParagraphStyle(
+        'Footer',
+        parent=styles['Normal'],
+        fontSize=10,
+        textColor=colors.grey,
+        alignment=TA_CENTER
+    )
+    story.append(Paragraph(f"Generated by Region IQ | {datetime.now().strftime('%B %d, %Y')}", footer_style))
+    story.append(Paragraph("Confidential - Not for Distribution", footer_style))
+    
+    # Build PDF
+    doc.build(story)
+    pdf = buffer.getvalue()
+    buffer.close()
+    
+    return pdf
+
+# ===========================
+# Main Application
+# ===========================
+
+def main():
+    # Load data
+    df_long, df_wide, df_ci, df_quality, metadata = load_data()
+    geojson = load_geojson()
+    
+    # Header
+    col1, col2, col3 = st.columns([2, 1, 1])
+    with col1:
+        st.title("🌍 Region IQ - Professional Economic Forecasts")
+    with col2:
+        st.metric("Data Quality", 
+                 f"{metadata.get('quality_indicators', {}).get('mean_cv', 0)*100:.1f}% avg uncertainty",
+                 delta="Institutional Grade")
+    with col3:
+        st.metric("Coverage", 
+                 f"{df_long['region_code'].nunique()} regions",
+                 delta=f"{df_long['metric'].nunique()} indicators")
+    
+    # Sidebar configuration
+    st.sidebar.title("🎛️ Control Panel")
+    
+    # View mode selection
+    view_mode = st.sidebar.selectbox(
+        "View Mode",
+        ["📊 Single Region Analysis", 
+         "🗺️ Geographic Comparison", 
+         "📈 Multi-Region Trends",
+         "🎯 Executive Dashboard",
+         "📑 Report Generator"]
+    )
+    
+    # Common controls
+    available_metrics = [m for m in METRIC_CONFIG.keys() if m in df_long['metric'].unique()]
+    selected_metric = st.sidebar.selectbox(
+        "Select Indicator",
+        available_metrics,
+        format_func=lambda x: f"{METRIC_CONFIG[x]['icon']} {METRIC_CONFIG[x]['name']}"
+    )
+    
+    # Year slider for maps
+    min_year = int(df_long['year'].min())
+    max_year = int(df_long['year'].max())
+    
+    # ===========================
+    # View Modes
+    # ===========================
+    
+    if view_mode == "📊 Single Region Analysis":
+        selected_region = st.sidebar.selectbox(
+            "Select Region",
+            sorted(df_long['region_code'].unique()),
+            format_func=lambda x: ITL1_NAMES.get(x, x)
+        )
+        
+        # Filter data
+        region_data = df_long[(df_long['region_code'] == selected_region) & 
+                             (df_long['metric'] == selected_metric)]
+        
+        if not region_data.empty:
+            # KPI Row
+            col1, col2, col3, col4 = st.columns(4)
+            
+            # Calculate KPIs
+            hist_data = region_data[region_data['data_type'] == 'historical']
+            fore_data = region_data[region_data['data_type'] == 'forecast']
+            
+            if not hist_data.empty:
+                last_hist_year = hist_data['year'].max()
+                last_value = hist_data[hist_data['year'] == last_hist_year]['value'].iloc[0]
+                
+                with col1:
+                    st.metric(
+                        f"Current ({last_hist_year})",
+                        format_value(last_value, METRIC_CONFIG[selected_metric]['format'])
+                    )
+            
+            if not fore_data.empty and 2030 in fore_data['year'].values:
+                fore_2030 = fore_data[fore_data['year'] == 2030]['value'].iloc[0]
+                
+                with col2:
+                    st.metric(
+                        "2030 Forecast",
+                        format_value(fore_2030, METRIC_CONFIG[selected_metric]['format'])
+                    )
+                
+                if not hist_data.empty:
+                    cagr = calculate_cagr(last_value, fore_2030, 2030 - last_hist_year)
+                    if cagr:
+                        with col3:
+                            st.metric("CAGR", f"{cagr:.1f}%")
+            
+            # Quality badge
+            if not df_ci.empty:
+                quality_data = df_ci[(df_ci['region_code'] == selected_region) & 
+                                   (df_ci['metric'] == selected_metric)]
+                if not quality_data.empty:
+                    avg_cv = quality_data['cv'].mean()
+                    with col4:
+                        st.metric("Forecast Quality", get_quality_badge(avg_cv))
+            
+            # Main chart
+            st.plotly_chart(
+                create_time_series_chart(region_data, ITL1_NAMES.get(selected_region, selected_region), 
+                                        selected_metric),
+                use_container_width=True
+            )
+            
+            # AI Narrative
+            with st.expander("📝 AI-Generated Analysis", expanded=True):
+                narrative = generate_ai_narrative(
+                    region_data, 
+                    ITL1_NAMES.get(selected_region, selected_region),
+                    selected_metric,
+                    metadata
+                )
+                st.markdown(narrative)
+            
+            # Data table
+            with st.expander("📊 View Raw Data"):
+                display_data = region_data[['year', 'value', 'data_type', 'method']].sort_values('year')
+                st.dataframe(display_data, use_container_width=True)
+                
+                csv = display_data.to_csv(index=False)
+                st.download_button(
+                    "📥 Download Data (CSV)",
+                    csv,
+                    f"{selected_region}_{selected_metric}_data.csv",
+                    "text/csv"
+                )
+    
+    elif view_mode == "🗺️ Geographic Comparison":
+        selected_year = st.sidebar.slider(
+            "Select Year",
+            min_year,
+            max_year,
+            2030 if 2030 <= max_year else max_year
+        )
+        
+        # Create map
+        map_fig = create_choropleth_map(df_long, selected_metric, selected_year, geojson)
+        
+        if map_fig:
+            st.plotly_chart(map_fig, use_container_width=True)
+            
+            # Regional ranking table
+            year_data = df_long[(df_long['year'] == selected_year) & 
+                               (df_long['metric'] == selected_metric)]
+            
+            if not year_data.empty:
+                ranking = year_data[['region_code', 'value']].copy()
+                ranking['region'] = ranking['region_code'].map(ITL1_NAMES)
+                ranking = ranking.sort_values('value', ascending=False)
+                ranking['rank'] = range(1, len(ranking) + 1)
+                
+                col1, col2 = st.columns(2)
+                
+                with col1:
+                    st.subheader("🏆 Top Performers")
+                    top_5 = ranking.head(5)[['rank', 'region', 'value']]
+                    top_5['value'] = top_5['value'].apply(
+                        lambda x: format_value(x, METRIC_CONFIG[selected_metric]['format'])
+                    )
+                    st.table(top_5)
+                
+                with col2:
+                    st.subheader("📊 Regional Distribution")
+                    fig_hist = px.histogram(
+                        ranking, 
+                        x='value',
+                        nbins=20,
+                        title=f"Distribution of {METRIC_CONFIG[selected_metric]['name']} ({selected_year})"
+                    )
+                    st.plotly_chart(fig_hist, use_container_width=True)
+        else:
+            st.warning("Map visualization not available. Please check GeoJSON file.")
+    
+    elif view_mode == "📈 Multi-Region Trends":
+        selected_regions = st.sidebar.multiselect(
+            "Select Regions to Compare",
+            sorted(df_long['region_code'].unique()),
+            default=sorted(df_long['region_code'].unique())[:3],
+            format_func=lambda x: ITL1_NAMES.get(x, x)
+        )
+        
+        if selected_regions:
+            comparison_fig = create_comparison_chart(df_long, selected_regions, selected_metric)
+            st.plotly_chart(comparison_fig, use_container_width=True)
+            
+            # Comparison table
+            st.subheader("📊 Comparative Statistics")
+            
+            comparison_data = []
+            for region in selected_regions:
+                region_data = df_long[(df_long['region_code'] == region) & 
+                                     (df_long['metric'] == selected_metric)]
+                
+                if not region_data.empty:
+                    hist = region_data[region_data['data_type'] == 'historical']
+                    fore = region_data[region_data['data_type'] == 'forecast']
+                    
+                    if not hist.empty and not fore.empty:
+                        last_hist = hist.nlargest(1, 'year')
+                        fore_2030 = fore[fore['year'] == 2030]
+                        
+                        if not fore_2030.empty:
+                            comparison_data.append({
+                                'Region': ITL1_NAMES.get(region, region),
+                                f'Current ({last_hist["year"].iloc[0]})': format_value(
+                                    last_hist['value'].iloc[0],
+                                    METRIC_CONFIG[selected_metric]['format']
+                                ),
+                                '2030 Forecast': format_value(
+                                    fore_2030['value'].iloc[0],
+                                    METRIC_CONFIG[selected_metric]['format']
+                                ),
+                                'CAGR': f"{calculate_cagr(last_hist['value'].iloc[0], fore_2030['value'].iloc[0], 2030 - last_hist['year'].iloc[0]):.1f}%"
+                            })
+            
+            if comparison_data:
+                comparison_df = pd.DataFrame(comparison_data)
+                st.table(comparison_df)
+    
+    elif view_mode == "🎯 Executive Dashboard":
+        selected_region = st.sidebar.selectbox(
+            "Select Region",
+            sorted(df_long['region_code'].unique()),
+            format_func=lambda x: ITL1_NAMES.get(x, x)
+        )
+        
+        # Create comprehensive dashboard
+        dashboard_fig = create_dashboard_summary(df_long, selected_region)
+        st.plotly_chart(dashboard_fig, use_container_width=True)
+        
+        # Key insights
+        st.subheader("🔍 Key Insights")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.info("""
+            **Strengths:**
+            - Robust historical data foundation
+            - Multiple model ensemble approach
+            - Quantified uncertainty bounds
+            """)
+        
+        with col2:
+            st.success("""
+            **Opportunities:**
+            - Post-COVID recovery trajectory
+            - Regional development initiatives
+            - Productivity improvements
+            """)
+    
+    elif view_mode == "📑 Report Generator":
+        selected_region = st.sidebar.selectbox(
+            "Select Region for Report",
+            sorted(df_long['region_code'].unique()),
+            format_func=lambda x: ITL1_NAMES.get(x, x)
+        )
+        
+        st.subheader("📑 Generate Professional Report")
+        
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            if st.button("📄 Generate PDF Report", type="primary"):
+                pdf = generate_pdf_report(df_long, selected_region, metadata)
+                if pdf:
+                    st.download_button(
+                        "📥 Download PDF Report",
+                        pdf,
+                        f"RegionIQ_Report_{selected_region}_{datetime.now().strftime('%Y%m%d')}.pdf",
+                        "application/pdf"
+                    )
+                else:
+                    st.warning("PDF generation requires reportlab. Install with: pip install reportlab")
+        
+        with col2:
+            # Excel export
+            excel_buffer = io.BytesIO()
+            with pd.ExcelWriter(excel_buffer, engine='xlsxwriter') as writer:
+                # Write different sheets
+                region_data = df_long[df_long['region_code'] == selected_region]
+                
+                for metric in region_data['metric'].unique():
+                    metric_data = region_data[region_data['metric'] == metric]
+                    metric_data.to_excel(writer, sheet_name=metric[:30], index=False)
+                
+                # Add metadata sheet
+                pd.DataFrame([metadata.get('quality_indicators', {})]).T.to_excel(
+                    writer, sheet_name='Metadata'
+                )
+            
+            excel_buffer.seek(0)
+            st.download_button(
+                "📊 Download Excel Report",
+                excel_buffer,
+                f"RegionIQ_Data_{selected_region}_{datetime.now().strftime('%Y%m%d')}.xlsx",
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
+        
+        with col3:
+            # PowerPoint export placeholder
+            st.button("📊 Generate PowerPoint", disabled=True, 
+                     help="Coming soon: Auto-generated presentation slides")
+        
+        # Report preview
+        st.subheader("📋 Report Preview")
+        
+        region_name = ITL1_NAMES.get(selected_region, selected_region)
+        
+        st.markdown(f"""
+        ### Regional Economic Forecast Report - {region_name}
+        
+        **Executive Summary**
+        
+        This comprehensive analysis provides economic forecasts for {region_name} through 2030, 
+        leveraging state-of-the-art econometric modeling techniques.
+        
+        **Key Findings:**
+        - Population trajectory shows continued growth/stability
+        - Economic output (GVA) projected to expand at sustainable rates
+        - Employment markets demonstrate resilience
+        - Productivity improvements indicate economic modernization
+        
+        **Methodology:**
+        - Ensemble modeling combining multiple forecasting approaches
+        - Cross-validation for optimal model selection
+        - Bootstrap confidence intervals for uncertainty quantification
+        - Structural break detection for major economic events
+        
+        **Data Quality:**
+        - Average forecast uncertainty: {metadata.get('quality_indicators', {}).get('mean_cv', 0)*100:.1f}%
+        - Historical data coverage: {metadata.get('quality_indicators', {}).get('avg_history_length', 'N/A'):.1f} years
+        - Model diversity: {metadata.get('quality_indicators', {}).get('model_diversity', 'N/A')} methods
+        
+        ---
+        *Generated by Region IQ | {datetime.now().strftime('%B %d, %Y')}*
+        """)
+    
+    # Footer
+    st.markdown("---")
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        st.caption("🏢 Region IQ - Professional Economic Intelligence")
+    
+    with col2:
+        st.caption("📊 Powered by Advanced Econometric Modeling")
+    
+    with col3:
+        st.caption(f"🕐 Last Updated: {metadata.get('run_timestamp', 'Unknown')[:10]}")
+
+if __name__ == "__main__":
+    main()

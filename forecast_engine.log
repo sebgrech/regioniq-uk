@@ -1,0 +1,242 @@
+2025-08-22 17:55:44,100 - __main__ - INFO - Configuration validated successfully
+2025-08-22 17:55:44,100 - __main__ - INFO - ============================================================
+2025-08-22 17:55:44,100 - __main__ - INFO - REGION IQ - INSTITUTIONAL FORECASTING ENGINE v2.0
+2025-08-22 17:55:44,101 - __main__ - INFO - ============================================================
+2025-08-22 17:55:44,101 - __main__ - INFO - Loading and validating data...
+2025-08-22 17:55:44,103 - __main__ - WARNING - Missing population data: data/clean/population/population_ITL1_metrics_wide.csv
+2025-08-22 17:55:44,139 - __main__ - INFO - ✓ Loaded income: 624 rows
+2025-08-22 17:55:44,152 - __main__ - INFO - ✓ Loaded gva: 624 rows
+2025-08-22 17:55:44,160 - __main__ - INFO - ✓ Loaded employment: 165 rows
+2025-08-22 17:55:44,195 - __main__ - WARNING - Missing expected metrics: {'population_total'}
+2025-08-22 17:55:44,203 - __main__ - INFO - Data validation completed
+2025-08-22 17:55:44,211 - __main__ - INFO - Identified 59 forecasting tasks
+2025-08-22 17:56:19,391 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:56:19,579 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:56:19,588 - __main__ - INFO - ✓ Completed: E12000002-gdhi_total_mn_gbp
+2025-08-22 17:56:31,224 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:56:31,542 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:56:31,545 - __main__ - INFO - ✓ Completed: E12000001-gdhi_per_head_gbp
+2025-08-22 17:56:32,214 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:56:32,508 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:56:32,510 - __main__ - INFO - ✓ Completed: E12000002-gdhi_per_head_gbp
+2025-08-22 17:56:33,890 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:56:34,295 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:56:34,298 - __main__ - INFO - ✓ Completed: E12000001-gdhi_total_mn_gbp
+2025-08-22 17:56:51,464 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:56:51,704 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:56:51,706 - __main__ - INFO - ✓ Completed: E12000003-gdhi_per_head_gbp
+2025-08-22 17:57:02,876 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:57:03,034 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:57:03,035 - __main__ - INFO - ✓ Completed: E12000003-gdhi_total_mn_gbp
+2025-08-22 17:57:06,104 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:57:06,333 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:57:06,335 - __main__ - INFO - ✓ Completed: E12000004-gdhi_total_mn_gbp
+2025-08-22 17:57:10,474 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:57:10,701 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:57:10,703 - __main__ - INFO - ✓ Completed: E12000004-gdhi_per_head_gbp
+2025-08-22 17:57:21,348 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:57:21,613 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:57:21,617 - __main__ - INFO - ✓ Completed: E12000005-gdhi_per_head_gbp
+2025-08-22 17:57:24,246 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:57:24,623 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:57:24,625 - __main__ - INFO - ✓ Completed: E12000005-gdhi_total_mn_gbp
+2025-08-22 17:57:32,794 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:57:32,936 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:57:32,938 - __main__ - INFO - ✓ Completed: E12000006-gdhi_total_mn_gbp
+2025-08-22 17:57:33,565 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:57:33,846 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:57:33,847 - __main__ - INFO - ✓ Completed: E12000006-gdhi_per_head_gbp
+2025-08-22 17:57:52,065 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:57:52,265 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:57:52,295 - __main__ - INFO - ✓ Completed: E12000008-gdhi_total_mn_gbp
+2025-08-22 17:57:52,738 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:57:53,089 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:57:53,092 - __main__ - INFO - ✓ Completed: E12000007-gdhi_per_head_gbp
+2025-08-22 17:57:54,473 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:57:54,841 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:57:54,843 - __main__ - INFO - ✓ Completed: E12000007-gdhi_total_mn_gbp
+2025-08-22 17:58:01,516 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:58:01,826 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:58:01,828 - __main__ - INFO - ✓ Completed: E12000008-gdhi_per_head_gbp
+2025-08-22 17:58:30,674 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:58:30,817 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:58:30,830 - __main__ - INFO - ✓ Completed: E12000009-gdhi_per_head_gbp
+2025-08-22 17:58:32,031 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:58:32,220 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:58:32,231 - __main__ - INFO - ✓ Completed: E12000009-gdhi_total_mn_gbp
+2025-08-22 17:58:43,139 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:58:43,504 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:58:43,509 - __main__ - INFO - ✓ Completed: N92000002-gdhi_per_head_gbp
+2025-08-22 17:58:48,016 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:58:48,209 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:58:48,239 - __main__ - INFO - ✓ Completed: N92000002-gdhi_total_mn_gbp
+2025-08-22 17:59:00,404 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:59:00,634 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:59:00,637 - __main__ - INFO - ✓ Completed: S92000003-gdhi_total_mn_gbp
+2025-08-22 17:59:01,447 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:59:01,709 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:59:01,711 - __main__ - INFO - ✓ Completed: S92000003-gdhi_per_head_gbp
+2025-08-22 17:59:05,884 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:59:06,147 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:59:06,150 - __main__ - INFO - ✓ Completed: TLC-chained_gva_mn_gbp
+2025-08-22 17:59:06,787 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:59:06,817 - __main__ - INFO - ✓ Completed: TLC-emp_total_jobs
+2025-08-22 17:59:19,846 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:59:19,848 - __main__ - INFO - ✓ Completed: TLD-emp_total_jobs
+2025-08-22 17:59:23,316 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:59:23,514 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:59:23,516 - __main__ - INFO - ✓ Completed: TLC-nominal_gva_mn_gbp
+2025-08-22 17:59:29,548 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:59:29,720 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:59:29,727 - __main__ - INFO - ✓ Completed: TLD-chained_gva_mn_gbp
+2025-08-22 17:59:30,191 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:59:30,370 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:59:30,372 - __main__ - INFO - ✓ Completed: TLD-nominal_gva_mn_gbp
+2025-08-22 17:59:39,969 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:59:39,971 - __main__ - INFO - ✓ Completed: TLE-emp_total_jobs
+2025-08-22 17:59:40,942 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:59:41,068 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:59:41,070 - __main__ - INFO - ✓ Completed: TLE-chained_gva_mn_gbp
+2025-08-22 17:59:52,210 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:59:52,339 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:59:52,379 - __main__ - INFO - ✓ Completed: TLE-nominal_gva_mn_gbp
+2025-08-22 17:59:54,308 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:59:54,583 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 17:59:54,585 - __main__ - INFO - ✓ Completed: TLF-chained_gva_mn_gbp
+2025-08-22 17:59:56,642 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 17:59:56,645 - __main__ - INFO - ✓ Completed: TLF-emp_total_jobs
+2025-08-22 18:00:05,667 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:00:05,915 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:00:06,005 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 18:00:06,007 - __main__ - INFO - ✓ Completed: TLG-chained_gva_mn_gbp
+2025-08-22 18:00:06,084 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 18:00:06,086 - __main__ - INFO - ✓ Completed: TLF-nominal_gva_mn_gbp
+2025-08-22 18:00:11,712 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:00:11,739 - __main__ - INFO - ✓ Completed: TLG-emp_total_jobs
+2025-08-22 18:00:21,199 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:00:21,446 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 18:00:21,448 - __main__ - INFO - ✓ Completed: TLG-nominal_gva_mn_gbp
+2025-08-22 18:00:25,867 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:00:25,869 - __main__ - INFO - ✓ Completed: TLH-emp_total_jobs
+2025-08-22 18:00:28,955 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:00:29,139 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 18:00:29,194 - __main__ - INFO - ✓ Completed: TLH-chained_gva_mn_gbp
+2025-08-22 18:00:34,410 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:00:34,660 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 18:00:34,662 - __main__ - INFO - ✓ Completed: TLH-nominal_gva_mn_gbp
+2025-08-22 18:00:39,990 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:00:39,994 - __main__ - INFO - ✓ Completed: TLI-emp_total_jobs
+2025-08-22 18:00:46,227 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:00:46,513 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 18:00:46,515 - __main__ - INFO - ✓ Completed: TLI-chained_gva_mn_gbp
+2025-08-22 18:00:54,353 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:00:54,611 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 18:00:54,613 - __main__ - INFO - ✓ Completed: TLI-nominal_gva_mn_gbp
+2025-08-22 18:00:55,036 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:00:55,038 - __main__ - INFO - ✓ Completed: TLJ-emp_total_jobs
+2025-08-22 18:01:00,892 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:01:01,142 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 18:01:01,144 - __main__ - INFO - ✓ Completed: TLJ-chained_gva_mn_gbp
+2025-08-22 18:01:12,269 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:01:12,271 - __main__ - INFO - ✓ Completed: TLK-emp_total_jobs
+2025-08-22 18:01:14,973 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:01:15,311 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 18:01:15,363 - __main__ - INFO - ✓ Completed: TLJ-nominal_gva_mn_gbp
+2025-08-22 18:01:19,028 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:01:19,339 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 18:01:19,342 - __main__ - INFO - ✓ Completed: TLK-chained_gva_mn_gbp
+2025-08-22 18:01:26,597 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:01:26,862 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 18:01:26,866 - __main__ - INFO - ✓ Completed: TLK-nominal_gva_mn_gbp
+2025-08-22 18:01:34,766 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:01:34,771 - __main__ - INFO - ✓ Completed: TLL-emp_total_jobs
+2025-08-22 18:01:39,434 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:01:39,770 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 18:01:39,772 - __main__ - INFO - ✓ Completed: TLL-chained_gva_mn_gbp
+2025-08-22 18:01:50,972 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:01:51,488 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 18:01:51,504 - __main__ - INFO - ✓ Completed: TLL-nominal_gva_mn_gbp
+2025-08-22 18:01:57,270 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:01:57,272 - __main__ - INFO - ✓ Completed: TLM-emp_total_jobs
+2025-08-22 18:02:02,282 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:02:02,527 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 18:02:02,529 - __main__ - INFO - ✓ Completed: TLM-chained_gva_mn_gbp
+2025-08-22 18:02:15,510 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:02:15,739 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 18:02:15,742 - __main__ - INFO - ✓ Completed: TLM-nominal_gva_mn_gbp
+2025-08-22 18:02:17,500 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:02:17,709 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 18:02:17,711 - __main__ - INFO - ✓ Completed: TLN-chained_gva_mn_gbp
+2025-08-22 18:02:20,572 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:02:20,654 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 18:02:20,656 - __main__ - INFO - ✓ Completed: TLN-nominal_gva_mn_gbp
+2025-08-22 18:02:23,461 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:02:23,605 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 18:02:23,608 - __main__ - INFO - ✓ Completed: W92000004-gdhi_per_head_gbp
+2025-08-22 18:02:25,767 - __mp_main__ - ERROR - ARIMA with breaks failed: Prediction must have `end` after `start`.
+2025-08-22 18:02:25,872 - __mp_main__ - ERROR - State space model failed: Prediction must have `end` after `start`.
+2025-08-22 18:02:25,874 - __main__ - INFO - ✓ Completed: W92000004-gdhi_total_mn_gbp
+2025-08-22 18:02:26,941 - __main__ - INFO - Running multivariate VAR models...
+2025-08-22 18:02:26,944 - __main__ - INFO - Running VAR for E12000001
+2025-08-22 18:02:26,957 - __main__ - INFO - Running VAR for E12000002
+2025-08-22 18:02:26,961 - __main__ - INFO - Running VAR for E12000003
+2025-08-22 18:02:26,967 - __main__ - INFO - Running VAR for E12000004
+2025-08-22 18:02:26,978 - __main__ - INFO - Running VAR for E12000005
+2025-08-22 18:02:26,983 - __main__ - INFO - Running VAR for E12000006
+2025-08-22 18:02:26,987 - __main__ - INFO - Running VAR for E12000007
+2025-08-22 18:02:26,991 - __main__ - INFO - Running VAR for E12000008
+2025-08-22 18:02:26,997 - __main__ - INFO - Running VAR for E12000009
+2025-08-22 18:02:27,000 - __main__ - INFO - Running VAR for N92000002
+2025-08-22 18:02:27,004 - __main__ - INFO - Running VAR for S92000003
+2025-08-22 18:02:27,006 - __main__ - INFO - Running VAR for W92000004
+2025-08-22 18:02:27,016 - __main__ - INFO - Running VAR for TLC
+2025-08-22 18:02:27,106 - __main__ - INFO - Running VAR for TLD
+2025-08-22 18:02:27,147 - __main__ - INFO - Running VAR for TLE
+2025-08-22 18:02:27,184 - __main__ - INFO - Running VAR for TLF
+2025-08-22 18:02:27,224 - __main__ - INFO - Running VAR for TLG
+2025-08-22 18:02:27,256 - __main__ - INFO - Running VAR for TLH
+2025-08-22 18:02:27,302 - __main__ - INFO - Running VAR for TLI
+2025-08-22 18:02:27,339 - __main__ - INFO - Running VAR for TLJ
+2025-08-22 18:02:27,388 - __main__ - INFO - Running VAR for TLK
+2025-08-22 18:02:27,433 - __main__ - INFO - Running VAR for TLL
+2025-08-22 18:02:27,462 - __main__ - INFO - Running VAR for TLM
+2025-08-22 18:02:27,515 - __main__ - INFO - Running VAR for TLN
+2025-08-22 18:02:27,521 - __main__ - INFO - Calculating derived indicators...
+2025-08-22 18:02:28,018 - __main__ - ERROR - Pipeline failed: SVD did not converge
+Traceback (most recent call last):
+  File "/Users/gerardgrech/regioniq-uk/scripts/forecast/ITL1_forecast.py", line 1608, in main
+    results = forecaster.run()
+  File "/Users/gerardgrech/regioniq-uk/scripts/forecast/ITL1_forecast.py", line 1195, in run
+    derived_results = self._calculate_derived_metrics(all_data)
+  File "/Users/gerardgrech/regioniq-uk/scripts/forecast/ITL1_forecast.py", line 1440, in _calculate_derived_metrics
+    year_results = self.derived.calculate_all_derived(
+        data, region_code, year
+    )
+  File "/Users/gerardgrech/regioniq-uk/scripts/forecast/ITL1_forecast.py", line 1133, in calculate_all_derived
+    prod_val, prod_low, prod_high = DerivedMetrics.calculate_productivity(
+                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        metrics_dict['nominal_gva_mn_gbp'],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        metrics_dict['emp_total_jobs']
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/gerardgrech/regioniq-uk/scripts/forecast/ITL1_forecast.py", line 1097, in calculate_productivity
+    return DerivedMetrics.calculate_with_uncertainty(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        gva_pounds,
+        ^^^^^^^^^^^
+    ...<2 lines>...
+        correlation=correlation
+        ^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/gerardgrech/regioniq-uk/scripts/forecast/ITL1_forecast.py", line 1055, in calculate_with_uncertainty
+    samples = np.random.multivariate_normal(mean, cov, n_simulations)
+  File "numpy/random/mtrand.pyx", line 4251, in numpy.random.mtrand.RandomState.multivariate_normal
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/numpy/linalg/_linalg.py", line 1812, in svd
+    u, s, vh = gufunc(a, signature=signature)
+               ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/numpy/linalg/_linalg.py", line 113, in _raise_linalgerror_svd_nonconvergence
+    raise LinAlgError("SVD did not converge")
+numpy.linalg.LinAlgError: SVD did not converge

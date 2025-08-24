@@ -1,0 +1,309 @@
+2025-08-22 18:23:19,774 - __main__ - INFO - Configuration V3 validated successfully
+2025-08-22 18:23:19,774 - __main__ - INFO - Configuration Summary:
+2025-08-22 18:23:19,775 - __main__ - INFO -   Target year: 2030
+2025-08-22 18:23:19,775 - __main__ - INFO -   Bootstrap samples: 200
+2025-08-22 18:23:19,775 - __main__ - INFO -   CV windows: 3
+2025-08-22 18:23:19,775 - __main__ - INFO -   Parallel processing: True
+2025-08-22 18:23:19,775 - __main__ - INFO - ============================================================
+2025-08-22 18:23:19,776 - __main__ - INFO - REGION IQ - INSTITUTIONAL FORECASTING ENGINE V3.0
+2025-08-22 18:23:19,776 - __main__ - INFO - ============================================================
+2025-08-22 18:23:19,776 - __main__ - INFO - Loading and validating data...
+2025-08-22 18:23:19,776 - __main__ - INFO - Loading data from cache
+2025-08-22 18:23:19,789 - __main__ - INFO - Data coverage: {'gdhi_per_head_gbp': {'regions': 12, 'missing_regions': {'TLH', 'TLE', 'TLD', 'TLF', 'TLC', 'TLI', 'TLJ', 'TLL', 'TLM', 'TLK', 'TLN', 'TLG'}, 'year_range': '1997-2022', 'observations': 312}, 'gdhi_total_mn_gbp': {'regions': 12, 'missing_regions': {'TLH', 'TLE', 'TLD', 'TLF', 'TLC', 'TLI', 'TLJ', 'TLL', 'TLM', 'TLK', 'TLN', 'TLG'}, 'year_range': '1997-2022', 'observations': 312}, 'chained_gva_mn_gbp': {'regions': 12, 'missing_regions': set(), 'year_range': '1998-2023', 'observations': 312}, 'nominal_gva_mn_gbp': {'regions': 12, 'missing_regions': set(), 'year_range': '1998-2023', 'observations': 312}, 'emp_total_jobs': {'regions': 11, 'missing_regions': {'TLN'}, 'year_range': '2009-2023', 'observations': 165}}
+2025-08-22 18:23:19,819 - __main__ - INFO - Identified 59 forecasting tasks
+2025-08-22 18:23:19,819 - __main__ - INFO - Processing 1/59: E12000001-gdhi_per_head_gbp
+2025-08-22 18:23:23,635 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:23:23,887 - __main__ - INFO - Processing 2/59: E12000001-gdhi_total_mn_gbp
+2025-08-22 18:23:27,593 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:23:27,780 - __main__ - INFO - Processing 3/59: E12000002-gdhi_per_head_gbp
+2025-08-22 18:23:31,304 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:23:31,532 - __main__ - INFO - Processing 4/59: E12000002-gdhi_total_mn_gbp
+2025-08-22 18:23:33,814 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:23:33,957 - __main__ - INFO - Processing 5/59: E12000003-gdhi_per_head_gbp
+2025-08-22 18:23:36,056 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:23:36,185 - __main__ - INFO - Processing 6/59: E12000003-gdhi_total_mn_gbp
+2025-08-22 18:23:37,903 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:23:38,019 - __main__ - INFO - Processing 7/59: E12000004-gdhi_per_head_gbp
+2025-08-22 18:23:39,394 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:23:39,554 - __main__ - INFO - Processing 8/59: E12000004-gdhi_total_mn_gbp
+2025-08-22 18:23:41,132 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:23:41,249 - __main__ - INFO - Processing 9/59: E12000005-gdhi_per_head_gbp
+2025-08-22 18:23:42,822 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:23:43,099 - __main__ - INFO - Processing 10/59: E12000005-gdhi_total_mn_gbp
+2025-08-22 18:23:44,559 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:23:44,679 - __main__ - INFO - Processing 11/59: E12000006-gdhi_per_head_gbp
+2025-08-22 18:23:46,455 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:23:46,610 - __main__ - INFO - Processing 12/59: E12000006-gdhi_total_mn_gbp
+2025-08-22 18:23:48,458 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:23:49,215 - __main__ - INFO - Processing 13/59: E12000007-gdhi_per_head_gbp
+2025-08-22 18:23:50,942 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:23:51,063 - __main__ - INFO - Processing 14/59: E12000007-gdhi_total_mn_gbp
+2025-08-22 18:23:52,624 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:23:52,751 - __main__ - INFO - Processing 15/59: E12000008-gdhi_per_head_gbp
+2025-08-22 18:23:54,352 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:23:54,500 - __main__ - INFO - Processing 16/59: E12000008-gdhi_total_mn_gbp
+2025-08-22 18:23:56,265 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:23:56,385 - __main__ - INFO - Processing 17/59: E12000009-gdhi_per_head_gbp
+2025-08-22 18:23:58,068 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:23:58,201 - __main__ - INFO - Processing 18/59: E12000009-gdhi_total_mn_gbp
+2025-08-22 18:23:59,587 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:23:59,703 - __main__ - INFO - Processing 19/59: N92000002-gdhi_per_head_gbp
+2025-08-22 18:24:01,487 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:01,626 - __main__ - INFO - Processing 20/59: N92000002-gdhi_total_mn_gbp
+2025-08-22 18:24:03,564 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:03,704 - __main__ - INFO - Processing 21/59: S92000003-gdhi_per_head_gbp
+2025-08-22 18:24:05,235 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:05,375 - __main__ - INFO - Processing 22/59: S92000003-gdhi_total_mn_gbp
+2025-08-22 18:24:07,089 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:07,221 - __main__ - INFO - Processing 23/59: TLC-chained_gva_mn_gbp
+2025-08-22 18:24:08,679 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:08,806 - __main__ - INFO - Processing 24/59: TLC-emp_total_jobs
+2025-08-22 18:24:10,883 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:10,887 - __main__ - INFO - Processing 25/59: TLC-nominal_gva_mn_gbp
+2025-08-22 18:24:12,460 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:12,583 - __main__ - INFO - Processing 26/59: TLD-chained_gva_mn_gbp
+2025-08-22 18:24:14,125 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:14,264 - __main__ - INFO - Processing 27/59: TLD-emp_total_jobs
+2025-08-22 18:24:16,185 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:16,187 - __main__ - INFO - Processing 28/59: TLD-nominal_gva_mn_gbp
+2025-08-22 18:24:17,853 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:17,999 - __main__ - INFO - Processing 29/59: TLE-chained_gva_mn_gbp
+2025-08-22 18:24:19,600 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:19,748 - __main__ - INFO - Processing 30/59: TLE-emp_total_jobs
+2025-08-22 18:24:21,187 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:21,190 - __main__ - INFO - Processing 31/59: TLE-nominal_gva_mn_gbp
+2025-08-22 18:24:22,951 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:23,076 - __main__ - INFO - Processing 32/59: TLF-chained_gva_mn_gbp
+2025-08-22 18:24:24,925 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:25,076 - __main__ - INFO - Processing 33/59: TLF-emp_total_jobs
+2025-08-22 18:24:27,153 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:27,155 - __main__ - INFO - Processing 34/59: TLF-nominal_gva_mn_gbp
+2025-08-22 18:24:28,833 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:28,968 - __main__ - INFO - Processing 35/59: TLG-chained_gva_mn_gbp
+2025-08-22 18:24:30,843 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:30,971 - __main__ - INFO - Processing 36/59: TLG-emp_total_jobs
+2025-08-22 18:24:32,313 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:32,315 - __main__ - INFO - Processing 37/59: TLG-nominal_gva_mn_gbp
+2025-08-22 18:24:33,804 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:33,920 - __main__ - INFO - Processing 38/59: TLH-chained_gva_mn_gbp
+2025-08-22 18:24:35,249 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:35,559 - __main__ - INFO - Processing 39/59: TLH-emp_total_jobs
+2025-08-22 18:24:38,042 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:38,047 - __main__ - INFO - Processing 40/59: TLH-nominal_gva_mn_gbp
+2025-08-22 18:24:40,077 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:40,214 - __main__ - INFO - Processing 41/59: TLI-chained_gva_mn_gbp
+2025-08-22 18:24:42,154 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:42,370 - __main__ - INFO - Processing 42/59: TLI-emp_total_jobs
+2025-08-22 18:24:44,496 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:44,501 - __main__ - INFO - Processing 43/59: TLI-nominal_gva_mn_gbp
+2025-08-22 18:24:46,982 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:47,109 - __main__ - INFO - Processing 44/59: TLJ-chained_gva_mn_gbp
+2025-08-22 18:24:48,559 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:48,680 - __main__ - INFO - Processing 45/59: TLJ-emp_total_jobs
+2025-08-22 18:24:48,688 - __main__ - INFO - Processing 46/59: TLJ-nominal_gva_mn_gbp
+2025-08-22 18:24:50,206 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:50,317 - __main__ - INFO - Processing 47/59: TLK-chained_gva_mn_gbp
+2025-08-22 18:24:51,675 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:51,813 - __main__ - INFO - Processing 48/59: TLK-emp_total_jobs
+2025-08-22 18:24:53,426 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:53,428 - __main__ - INFO - Processing 49/59: TLK-nominal_gva_mn_gbp
+2025-08-22 18:24:54,834 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:54,946 - __main__ - INFO - Processing 50/59: TLL-chained_gva_mn_gbp
+2025-08-22 18:24:56,248 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:56,505 - __main__ - INFO - Processing 51/59: TLL-emp_total_jobs
+2025-08-22 18:24:59,109 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:24:59,112 - __main__ - INFO - Processing 52/59: TLL-nominal_gva_mn_gbp
+2025-08-22 18:25:00,680 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:25:00,796 - __main__ - INFO - Processing 53/59: TLM-chained_gva_mn_gbp
+2025-08-22 18:25:02,444 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:25:02,588 - __main__ - INFO - Processing 54/59: TLM-emp_total_jobs
+2025-08-22 18:25:04,407 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:25:04,409 - __main__ - INFO - Processing 55/59: TLM-nominal_gva_mn_gbp
+2025-08-22 18:25:06,164 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:25:06,317 - __main__ - INFO - Processing 56/59: TLN-chained_gva_mn_gbp
+2025-08-22 18:25:08,132 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:25:08,291 - __main__ - INFO - Processing 57/59: TLN-nominal_gva_mn_gbp
+2025-08-22 18:25:11,321 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:25:11,490 - __main__ - INFO - Processing 58/59: W92000004-gdhi_per_head_gbp
+2025-08-22 18:25:14,727 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:25:14,841 - __main__ - INFO - Processing 59/59: W92000004-gdhi_total_mn_gbp
+2025-08-22 18:25:16,721 - __main__ - ERROR - ARIMA failed: Prediction must have `end` after `start`.
+2025-08-22 18:25:16,889 - __main__ - INFO - Calculating derived indicators...
+2025-08-22 18:25:17,413 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,416 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,419 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,425 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,429 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,432 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,434 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,438 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,440 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,443 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,450 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,452 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,455 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,458 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,466 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,506 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,508 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,512 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,518 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,522 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,524 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,532 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,534 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,538 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,540 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,548 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,551 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,555 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,557 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,566 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,622 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,630 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,634 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,638 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,641 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,649 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,652 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,655 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,712 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,719 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,725 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,732 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,735 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,739 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,753 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,803 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,806 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,815 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,818 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,825 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,833 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,840 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,843 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,850 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,854 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,857 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,861 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,866 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,871 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,874 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,915 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,918 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,923 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,930 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,932 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,937 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,939 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,943 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,948 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,950 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,954 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,957 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,960 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,996 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:17,999 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,057 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,067 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,075 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,084 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,089 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,094 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,099 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,106 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,109 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,115 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,119 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,123 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,126 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,132 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,137 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,180 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,184 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,188 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,192 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,196 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,199 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,204 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,206 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,211 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,215 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,224 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,226 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,231 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,234 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,237 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,280 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,282 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,285 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,288 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,291 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,294 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,298 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,302 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,305 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,307 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,311 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,315 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,318 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,321 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,323 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,356 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,359 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,362 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,366 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,369 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,371 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,374 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,376 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,382 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,384 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,387 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,390 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,392 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,397 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,399 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,432 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,435 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,437 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,440 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,442 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,447 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,450 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,453 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,455 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,458 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,463 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,466 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,469 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,472 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,475 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,518 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,521 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,523 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,526 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,530 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,533 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,535 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,538 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,541 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,543 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,548 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,550 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,553 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,556 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:18,559 - __main__ - WARNING - SVD failed in Monte Carlo, using independent sampling
+2025-08-22 18:25:19,949 - __main__ - INFO - Generating outputs...
+2025-08-22 18:25:20,068 - __main__ - INFO - ✓ Long format: data/forecast/forecast_v3_long.csv
+2025-08-22 18:25:20,100 - __main__ - INFO - ✓ Wide format: data/forecast/forecast_v3_wide.csv
+2025-08-22 18:25:20,118 - __main__ - INFO - ✓ Confidence intervals: data/forecast/confidence_intervals_v3.csv
+2025-08-22 18:25:20,159 - __main__ - INFO - ✓ Quality metrics: data/forecast/forecast_quality_v3.csv
+2025-08-22 18:25:20,220 - __main__ - INFO - ✓ Metadata: data/forecast/metadata_v3.json
+2025-08-22 18:25:20,220 - __main__ - INFO - ✓ Diagnostics report: data/forecast/diagnostics_report_v3.txt
+2025-08-22 18:25:20,221 - __main__ - INFO - ✅ Forecasting pipeline V3 completed successfully
+2025-08-22 18:25:20,221 - __main__ - INFO - ======================================================================
+2025-08-22 18:25:20,221 - __main__ - INFO - ✅ INSTITUTIONAL FORECASTING V3 COMPLETED SUCCESSFULLY
+2025-08-22 18:25:20,221 - __main__ - INFO - 📊 Total records: 2092
+2025-08-22 18:25:20,222 - __main__ - INFO - 📁 Outputs saved to: data/forecast
+2025-08-22 18:25:20,222 - __main__ - INFO - ======================================================================

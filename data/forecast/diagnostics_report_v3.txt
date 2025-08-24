@@ -1,0 +1,90 @@
+======================================================================
+REGION IQ - FORECAST DIAGNOSTICS REPORT V3.0
+======================================================================
+Generated: 2025-08-22T18:25:20.159610
+
+## EXECUTIVE SUMMARY
+----------------------------------------
+✓ Successfully generated forecasts for 24 regions
+✓ Covered 6 metrics
+✓ Total observations: 2,092
+✓ Forecast horizon: to 2030
+
+## DATA COVERAGE
+----------------------------------------
+
+gdhi_per_head_gbp:
+  Regions: 12/12
+  Missing: TLH, TLE, TLD, TLF, TLC, TLI, TLJ, TLL, TLM, TLK, TLN, TLG
+  Years: 1997-2022
+  Observations: 312
+
+gdhi_total_mn_gbp:
+  Regions: 12/12
+  Missing: TLH, TLE, TLD, TLF, TLC, TLI, TLJ, TLL, TLM, TLK, TLN, TLG
+  Years: 1997-2022
+  Observations: 312
+
+chained_gva_mn_gbp:
+  Regions: 12/12
+  Years: 1998-2023
+  Observations: 312
+
+nominal_gva_mn_gbp:
+  Regions: 12/12
+  Years: 1998-2023
+  Observations: 312
+
+emp_total_jobs:
+  Regions: 11/12
+  Missing: TLN
+  Years: 2009-2023
+  Observations: 165
+
+## MODEL USAGE
+----------------------------------------
+  Ensemble(2 models): 360 series
+  Linear: 77 series
+  derived_monte_carlo: 77 series
+
+## QUALITY INDICATORS
+----------------------------------------
+  Average uncertainty (CV): 11.1%
+  Median uncertainty (CV): 9.2%
+  Maximum uncertainty (CV): 34.7%
+  Model diversity: 3 different methods
+  Ensemble usage: 33.3%
+  Data gaps detected: 0
+  Average history length: 22.5 years
+
+## COHERENCE VALIDATION
+----------------------------------------
+✓ All coherence checks passed
+
+## CONFIGURATION
+----------------------------------------
+  Target year: 2030
+  Confidence levels: [0.8, 0.95]
+  CV windows: 3
+  Bootstrap samples: 200
+  Constraints applied:
+    - non_negative: True
+    - monotonic_population: True
+    - growth_caps: (2, 98)
+
+## STRUCTURAL BREAKS CONSIDERED
+----------------------------------------
+  2008: Financial Crisis (level)
+  2009: Crisis Recovery (trend)
+  2016: Brexit Vote (trend)
+  2020: COVID-19 (level)
+  2021: COVID Recovery (trend)
+
+## TECHNICAL ENVIRONMENT
+----------------------------------------
+  ✓ statsmodels
+  ✓ arch
+  ✓ sklearn
+
+======================================================================
+END OF REPORT

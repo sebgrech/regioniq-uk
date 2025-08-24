@@ -1,0 +1,108 @@
+{
+  "run_timestamp": "2025-08-22T18:25:20.159610",
+  "version": "3.0",
+  "config": {
+    "target_year": 2030,
+    "confidence_levels": [
+      0.8,
+      0.95
+    ],
+    "structural_breaks": [
+      {
+        "year": 2008,
+        "name": "Financial Crisis",
+        "type": "level"
+      },
+      {
+        "year": 2009,
+        "name": "Crisis Recovery",
+        "type": "trend"
+      },
+      {
+        "year": 2016,
+        "name": "Brexit Vote",
+        "type": "trend"
+      },
+      {
+        "year": 2020,
+        "name": "COVID-19",
+        "type": "level"
+      },
+      {
+        "year": 2021,
+        "name": "COVID Recovery",
+        "type": "trend"
+      }
+    ],
+    "cv_windows": 3,
+    "bootstrap_samples": 200,
+    "constraints": {
+      "non_negative": true,
+      "monotonic_population": true,
+      "growth_caps": [
+        2,
+        98
+      ]
+    }
+  },
+  "data_coverage": {
+    "gdhi_per_head_gbp": {
+      "regions": 12,
+      "missing_regions": "{'TLH', 'TLE', 'TLD', 'TLF', 'TLC', 'TLI', 'TLJ', 'TLL', 'TLM', 'TLK', 'TLN', 'TLG'}",
+      "year_range": "1997-2022",
+      "observations": 312
+    },
+    "gdhi_total_mn_gbp": {
+      "regions": 12,
+      "missing_regions": "{'TLH', 'TLE', 'TLD', 'TLF', 'TLC', 'TLI', 'TLJ', 'TLL', 'TLM', 'TLK', 'TLN', 'TLG'}",
+      "year_range": "1997-2022",
+      "observations": 312
+    },
+    "chained_gva_mn_gbp": {
+      "regions": 12,
+      "missing_regions": "set()",
+      "year_range": "1998-2023",
+      "observations": 312
+    },
+    "nominal_gva_mn_gbp": {
+      "regions": 12,
+      "missing_regions": "set()",
+      "year_range": "1998-2023",
+      "observations": 312
+    },
+    "emp_total_jobs": {
+      "regions": 11,
+      "missing_regions": "{'TLN'}",
+      "year_range": "2009-2023",
+      "observations": 165
+    }
+  },
+  "data_summary": {
+    "regions": 24,
+    "metrics": 6,
+    "total_observations": 2092,
+    "historical_obs": 1578,
+    "forecast_obs": 514,
+    "derived_metrics": 242
+  },
+  "model_usage": {
+    "Ensemble(2 models)": 360,
+    "Linear": 77,
+    "derived_monte_carlo": 77
+  },
+  "coherence_violations": 0,
+  "packages_available": {
+    "statsmodels": true,
+    "arch": true,
+    "sklearn": true
+  },
+  "quality_indicators": {
+    "mean_cv": 0.11063520764569992,
+    "median_cv": 0.09175998909342534,
+    "max_cv": 0.34718329323083474,
+    "model_diversity": 3,
+    "ensemble_usage": 0.3333333333333333,
+    "data_gaps": "0",
+    "avg_history_length": 22.542857142857144
+  }
+}

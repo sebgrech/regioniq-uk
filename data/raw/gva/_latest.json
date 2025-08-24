@@ -1,0 +1,10 @@
+{
+  "dataset_id": "ons_gva_balanced_by_industry",
+  "ons_url": "https://www.ons.gov.uk/economy/grossvalueaddedgva/datasets/nominalandrealregionalgrossvalueaddedbalancedbyindustry",
+  "download_url": "https://www.ons.gov.uk/file?uri=/economy/grossvalueaddedgva/datasets/nominalandrealregionalgrossvalueaddedbalancedbyindustry/current/regionalgrossvalueaddedbalancedbyindustryandallinternationalterritoriallevelsitlregions.xlsx",
+  "release_date": "2025-04-17",
+  "sha256": "0ecb7670bdb6f27b3a212bfccd8c30a078c6116aaee8a818863a4b3d43330881",
+  "filename": "gva_20250417_0ecb7670.xlsx",
+  "filesize_bytes": 12590173,
+  "scraped_at_utc": "2025-08-22T12:29:08.020807Z"
+}
